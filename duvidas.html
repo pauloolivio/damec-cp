@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mechanical Engineering</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #718d73;
+            --secondary-color: #5f705f;
+            --dark-blue: #1B2838;
+            --light-blue: #84a386;
+            --white: #ffffff;
+            --accent-orange: #FF6B00;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, var(--primary-color), var(--dark-blue));
+            line-height: 1.6;
+            min-height: 100vh;
+            padding-top: 80px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            background-color: var(--light-blue);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(0,0,0,0.2);
+        }
+
+        .header {
+            background-color: var(--white);
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo-img, .logo-img1 {
+            height: 50px;
+        }
+
+        .logo-text {
+            color: var(--dark-blue);
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+
+        .menu-icon {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--dark-blue);
+        }
+
+        .search-box {
+            margin: 2rem auto;
+            max-width: 600px;
+            padding: 1rem;
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .search-box input {
+            width: 70%;
+            padding: 0.75rem;
+            border: 1px solid var(--dark-blue);
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .search-box button {
+            padding: 0.75rem 1.5rem;
+            background-color: var(--dark-blue);
+            color: var(--white);
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .search-box button:hover {
+            background-color: var(--primary-color);
+        }
+
+        .results {
+            max-width: 1200px;
+            margin: 2rem auto;
+            margin-left: 2rem;
+            margin-right: 2rem;
+            padding: 1rem;
+            background-color: var(--white);
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .results h1 {
+            color: var(--dark-blue);
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .results ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .results li {
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .results li:last-child {
+            border-bottom: none;
+        }
+
+        .results a {
+            color: var(--dark-blue);
+            text-decoration: none;
+        }
+
+        .results a:hover {
+            text-decoration: underline;
+        }
+
+        .news-section {
+            padding: 2rem;
+            background-color: var(--white);
+            margin: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .news-section h2 {
+            color: var(--dark-blue);
+            margin-bottom: 1.5rem;
+            font-size: 1.75rem;
+            text-align: center;
+        }
+
+        .news-container {
+            max-height: 2000px; /* Aumente a altura para acomodar 20 itens */
+            overflow-y: auto; /* Adiciona barra de rolagem vertical */
+            padding-right: 1rem; /* Espaço para a barra de rolagem */
+        }
+
+        .news-item {
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .news-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .news-title {
+            color: var(--dark-blue);
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .news-description {
+            color: var(--dark-blue);
+            font-size: 1rem;
+            line-height: 1.5;
+            margin-bottom: 0.5rem;
+        }
+
+        .news-date {
+            color: var(--secondary-color);
+            font-size: 0.875rem;
+            font-style: italic;
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                padding: 1rem;
+            }
+
+            .logo-text {
+                font-size: 0;
+            }
+
+            .logo-text::after {
+                content: "DAMEC-CP";
+                font-size: 1.2rem;
+                font-weight: bold;
+                color: var(--dark-blue);
+                display: inline-block;
+            }
+
+            .logo-img {
+                height: 40px;
+            }
+
+            .logo-img1 {
+                display: none;
+            }
+            .search-box {
+                margin: 1rem auto;
+            }
+            .search-box {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .search-box input {
+                width: 100%;
+            }
+
+            .search-box button {
+                width: 100%;
+            }
+            .news-section h2 {
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            }
+            .news-title {
+                font-size: 1rem;
+                margin-bottom: 0rem;
+            }
+            .news-section {
+                padding: 1rem;
+                margin: 1rem;
+            }
+            .news-item {
+                margin-bottom: 0.5rem;
+                padding-bottom: 0.5rem;
+            }
+            .news-description {
+                font-size: 0.9rem;
+                margin-bottom: 0rem;
+            }
+            .results h1 {
+                font-size: 1.2rem;
+                margin-bottom: 0.5rem;
+            }
+            .results a {
+                font-size: 0.9rem;
+            }
+            .results {
+                margin: 1rem auto;
+                margin-left: 1rem;
+                margin-right: 1rem;
+            }
+            .results li {
+                margin-bottom: 0.5rem;
+                padding-bottom: 0.5rem;
+                }
+}
+    </style>
+
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="logo-section">
+                <a href="damec.html"><img src="imagens/damec-cp.png" alt="Mechanical Engineering Logo" class="logo-img"></a>
+                <span class="logo-text">DEPARTAMENTO DE ENGENHARIA MECÂNICA</span>
+            </div>
+            <img src="imagens/utfpr.png" alt="Mechanical Engineering Logo" class="logo-img1">
+            <i class="fas fa-bars menu-icon" id="menu-icon"></i>
+        </header>
+
+        <div class="search-box" id="searchBox">
+            <input type="text" id="searchInput" placeholder="Filtre por palavras chaves: Ex: histórico">
+            <button id="searchButton">Buscar</button>
+        </div>
+
+        <div class="results" id="resultsContainer" style="display: none;">
+            <h1>Resultados da Pesquisa</h1>
+            <ul id="resultsList"></ul>
+        </div>
+
+        <section class="news-section">
+            <h2>Dúvidas Frequentes</h2>
+            <div class="news-container" id="newsContainer">
+                <!-- As dúvidas serão carregadas dinamicamente aqui -->
+            </div>
+        </section>
+    </div>
+
+    <script type="module">
+        import { duvidas } from './ajudaAluno.js';
+    
+        // Função para carregar as dúvidas na página
+        function loadDuvidas() {
+            const newsContainer = document.getElementById("newsContainer");
+            newsContainer.innerHTML = duvidas.map(duvida => `
+                <div class="news-item">
+                    <div class="news-title">${duvida.title}</div>
+                    <div class="news-description">${duvida.content}</div>
+                    <div class="news-date">Tópicos: ${duvida.topics.join(", ")}</div>
+                </div>
+            `).join("");
+        }
+    
+        // Lista de stop words (palavras irrelevantes para a busca)
+        const stopWords = new Set(["a", "o", "e", "de", "no", "na", "em", "do", "da", "dos", "das", "para", "por", "com", "que", "um", "uma"]);
+
+        // Função para normalizar texto (remover acentos e caracteres especiais)
+        function normalizeText(text) {
+            return text.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+        }
+
+        // Função de busca melhorada
+        function search() {
+            const query = normalizeText(document.getElementById("searchInput").value);
+            console.log("Termo de busca:", query); // Depuração
+
+            // Divide a consulta em palavras individuais e remove stop words
+            const searchTerms = query
+                .split(" ")
+                .filter(term => term.trim() !== "" && !stopWords.has(term)); // Filtra stop words
+
+            console.log("Termos relevantes:", searchTerms); // Depuração
+
+            // Filtra e classifica as dúvidas com base na relevância
+            const results = duvidas.map(duvida => {
+                let score = 0;
+
+                // Verifica cada palavra da consulta
+                searchTerms.forEach(term => {
+                    // Pontuação para correspondências no título
+                    if (normalizeText(duvida.title).includes(term)) {
+                        score += 3; // Maior peso para o título
+                    }
+
+                    // Pontuação para correspondências nos tópicos
+                    if (duvida.topics.some(topic => normalizeText(topic).includes(term))) {
+                        score += 2; // Peso médio para tópicos
+                    }
+
+                    // Pontuação para correspondências no conteúdo
+                    if (normalizeText(duvida.content).includes(term)) {
+                        score += 1; // Menor peso para o conteúdo
+                    }
+                });
+
+                return { ...duvida, score }; // Adiciona a pontuação ao objeto da dúvida
+            })
+            .filter(duvida => duvida.score > 0) // Filtra dúvidas com pontuação maior que 0
+            .sort((a, b) => b.score - a.score); // Ordena por pontuação (maior primeiro)
+
+            console.log("Resultados encontrados:", results); // Depuração
+
+            const resultsContainer = document.getElementById("resultsContainer");
+            const resultsList = document.getElementById("resultsList");
+
+            resultsList.innerHTML = ''; // Limpa resultados anteriores
+
+            if (results.length > 0) {
+                results.forEach(duvida => {
+                    const li = document.createElement("li");
+                    li.innerHTML = `<a href="${duvida.link}" target="_blank"><strong>${duvida.title}</strong></a>: ${duvida.content}`;
+                    resultsList.appendChild(li);
+                });
+                resultsContainer.style.display = 'block'; // Mostra os resultados
+            } else {
+                resultsContainer.style.display = 'block'; // Mostra a área de resultados
+                resultsList.innerHTML = '<li>Nenhum resultado encontrado.</li>';
+            }
+        }
+
+        // Adiciona o ouvinte de evento ao botão de busca
+        document.getElementById("searchButton").addEventListener("click", search);
+
+        // Adiciona o ouvinte de evento para o "Enter" no campo de entrada
+        document.getElementById("searchInput").addEventListener("keydown", function (event) {
+            if (event.key === "Enter") { // Verifica se a tecla pressionada é "Enter"
+                search(); // Chama a função de busca
+            }
+        });
+
+        // Carrega as dúvidas ao abrir a página
+        loadDuvidas();
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mechanical Engineering</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #718d73;
+            --secondary-color: #5f705f;
+            --dark-blue: #1B2838;
+            --light-blue: #84a386;
+            --white: #ffffff;
+            --accent-orange: #FF6B00;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, var(--primary-color), var(--dark-blue));
+            line-height: 1.6;
+            min-height: 100vh;
+            padding-top: 80px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            background-color: var(--light-blue);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(0,0,0,0.2);
+        }
+
+        .header {
+            background-color: var(--white);
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo-img, .logo-img1 {
+            height: 50px;
+        }
+
+        .logo-text {
+            color: var(--dark-blue);
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+
+        .menu-icon {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--dark-blue);
+        }
+        .construction-text {
+            text-align: center;
+            align-content: center;
+            padding: 2rem;
+            font-size: 2rem;
+            color: var(--white);
+            background-color: rgba(0, 0, 0, 0.5);
+            height: 500px;
+        }
+
+
+        @media (max-width: 768px) {
+            .header {
+                padding: 1rem;
+            }
+
+            .logo-text {
+                font-size: 0;
+            }
+
+            .logo-text::after {
+                content: "DAMEC-CP";
+                font-size: 1.2rem;
+                font-weight: bold;
+                color: var(--dark-blue);
+                display: inline-block;
+            }
+
+            .logo-img {
+                height: 40px;
+            }
+
+            .logo-img1 {
+                display: none;
+            }
+    }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="logo-section">
+                <a href="damec.html"><img src="imagens/damec-cp.png" alt="Mechanical Engineering Logo" class="logo-img"></a>
+                <span class="logo-text">DEPARTAMENTO DE ENGENHARIA MECÂNICA</span>
+            </div>
+            <img src="imagens/utfpr.png" alt="Mechanical Engineering Logo" class="logo-img1">
+            <i class="fas fa-bars menu-icon" id="menu-icon"></i>
+        </header>
+
+        <!-- Texto "Página em construção" -->
+        <div class="construction-text">
+            PÁGINA EM CONSTRUÇÃO
+        </div>
+    </div>
+</body>
+</html>
