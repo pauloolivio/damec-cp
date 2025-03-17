@@ -1,0 +1,1048 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projetos - Mechanical Engineering</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Adicione o estilo existente aqui */
+        :root {
+            --primary-color: #718d73;
+            --secondary-color: #5f705f;
+            --dark-blue: #1B2838;
+            --light-blue: #84a386;
+            --white: #ffffff;
+            --accent-orange: #FF6B00;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, var(--primary-color), var(--dark-blue));
+            line-height: 1.6;
+            min-height: 100vh;
+            padding-top: 80px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            background-color: var(--light-blue);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(0,0,0,0.2);
+        }
+
+        .header {
+            background-color: var(--white);
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo-img, .logo-img1 {
+            height: 50px;
+        }
+
+        .logo-text {
+            color: var(--dark-blue);
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+
+        .menu-icon {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--dark-blue);
+        }
+
+        .nav-list {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            list-style: none;
+        }
+
+        .nav-menu {
+            background-color: var(--white);
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-item {
+            position: relative;
+        }
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: var(--white);
+            min-width: 200px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            border-radius: 4px;
+            padding: 0.5rem 0;
+            z-index: 1001;
+        }
+
+        .dropdown:hover .dropdown-menu {
+            display: block;
+        }
+
+        .dropdown-menu .nav-item {
+            display: block;
+            width: 100%;
+        }
+
+        .dropdown-menu .nav-item a {
+            padding: 0.5rem 1rem;
+            display: block;
+            white-space: nowrap;
+        }
+
+        .dropdown > a::after {
+            content: '▼';
+            font-size: 0.8em;
+            margin-left: 0.5rem;
+        }
+
+        .nav-item a {
+            color: #333;
+            text-decoration: none;
+            font-weight: 700;
+            padding: 0.5rem 1rem;
+            transition: color 0.3s ease;
+            width: 100%;
+            text-align: left;
+        }
+
+        .nav-item a:hover {
+            color: var(--dark-blue);
+        }
+
+        .nav-item a::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -5px;
+            width: 100%;
+            height: 2px;
+            background-color: var(--dark-blue);
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.3s ease;
+        }
+
+        .nav-item a:hover::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+
+        .nav-list.active {
+            display: flex;
+            flex-direction: column;
+            position: absolute;
+            top: 80px;
+            left: 0;
+            width: 100%;
+            background-color: var(--white);
+            z-index: 1000;
+            padding: 1rem 0;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+       /* Remova a classe carousel-image2 e use apenas carousel-image */
+        .carousel-image {
+            min-width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Adicione um identificador único para cada carrossel */
+        .carousel {
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+            height: 400px;
+        }
+
+        .carousel-images {
+            display: flex;
+            transition: transform 0.5s ease;
+            width: 100%;
+            height: 100%;
+        }
+
+        .carousel-indicators {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+        }
+
+        .indicator {
+            width: 10px;
+            height: 10px;
+            background-color: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .indicator.active {
+            background-color: var(--accent-orange);
+        }
+
+        .content {
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .content h1 {
+            color: var(--dark-blue);
+            margin-bottom: 1rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            color: var(--dark-blue);
+            font-size: 2rem;
+            transition: color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: var(--accent-orange);
+        }
+
+        .news-section {
+            padding: 2rem;
+            background-color: var(--white);
+            margin: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .news-section h2 {
+            color: var(--dark-blue);
+            margin-bottom: 1.5rem;
+            font-size: 1.75rem;
+            text-align: center;
+        }
+
+        .news-container {
+            max-height: 300px; /* Altura fixa para a área de rolagem */
+            overflow-y: auto; /* Adiciona barra de rolagem vertical */
+            padding-right: 1rem; /* Espaço para a barra de rolagem */
+        }
+
+        .news-item {
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .news-item:last-child {
+            border-bottom: none; /* Remove a borda do último item */
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .news-title {
+            color: var(--dark-blue);
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .news-description {
+            color: var(--dark-blue);
+            font-size: 1rem;
+            line-height: 1.5;
+            margin-bottom: 0.5rem;
+        }
+
+        .news-date {
+            color: var(--secondary-color);
+            font-size: 0.875rem;
+            font-style: italic;
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 2rem;
+        }
+
+        .card {
+            background: var(--white);
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card-title {
+            color: var(--dark-blue);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .card p {
+            color: var(--dark-blue);
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+
+        .card-image {
+            width: 100%; /* Ocupa toda a largura do card */
+            height: 200px; /* Altura fixa para as imagens */
+            object-fit: cover; /* Garante que a imagem cubra o espaço sem distorcer */
+            border-radius: 10px; /* Bordas arredondadas */
+            margin-bottom: 1rem; /* Espaçamento abaixo da imagem */
+        }
+      
+        .cta-button {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background-color: var(--accent-orange);
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background-color: #FF8533;
+        }
+
+        .location {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            padding: 2rem;
+            background-color: var(--white);
+            margin: 2rem;
+            border-radius: 10px;
+        }
+
+        .location-info {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .location-info h2 {
+            color: var(--dark-blue);
+            margin-bottom: 1rem;
+        }
+
+        .location-info p {
+            color: var(--dark-blue);
+            margin-bottom: 0.5rem;
+        }
+
+        #map {
+            flex: 1;
+            min-width: 300px;
+            height: 300px;
+            background-color: #ccc;
+            border-radius: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                padding: 1rem;
+            }
+
+            .logo-text {
+                font-size: 0;
+            }
+
+            .logo-text::after {
+                content: "DAMEC-CP";
+                font-size: 1.2rem;
+                font-weight: bold;
+                color: var(--dark-blue);
+                display: inline-block;
+            }
+
+            .logo-img {
+                height: 40px;
+            }
+
+            .logo-img1 {
+                display: none;
+            }
+
+            .menu-icon {
+                display: block;
+            }
+
+            .nav-menu {
+                background-color: var(--white);
+                padding: 0rem 0;
+                border-bottom: 0;
+            }
+
+            .nav-list {
+                display: none;
+                flex-direction: column;
+                align-items: flex-start;
+                background-color: var(--white);
+                width: 100%;
+                padding: 1rem;
+                position: fixed;
+                top: 80px;
+                left: 0;
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+                z-index: 1000;
+                max-height: calc(100vh - 80px);
+                overflow-y: auto;
+                list-style-type: none; /* Remove os pontos da lista */
+            }
+
+            .nav-list.active {
+                display: flex;
+            }
+
+            .nav-item a {
+                text-align: ;
+                width: 100%;
+            }
+
+            .carousel {
+                height: 300px;
+            }
+
+            .content {
+                padding: 1rem;
+            }
+
+            .content h1 {
+                font-size: 20px;
+            }
+
+            .social-links a {
+                font-size: 1.5rem;
+            }
+
+            .news-section {
+                padding: 1.5rem;
+                margin-left: 1rem;
+                margin-right: 1rem;
+                margin-top: 1rem;
+            }
+
+            .location {
+                flex-direction: column;
+                align-items: center;
+                text-align: left;
+                padding: 1.2rem;
+                gap: 0;
+                margin: 1rem;
+            }
+            .location-info h2{
+                font-size: 1.25rem;
+            }
+            .location-info p{
+                font-size: 0.9rem;
+            }
+
+            #map {
+                width: 100%;
+            }
+
+            .card-grid {
+                grid-template-columns: 1fr;
+                padding: 1rem;
+            }
+
+            .card {
+                padding: 1rem;
+            }
+
+            .card-title {
+                font-size: 1.25rem;
+            }
+
+            .card p {
+                font-size: 0.9rem;
+            }
+
+            .card-image {
+                height: 150px;
+            }
+        }
+
+
+        @media (max-width: 768px) {
+            .dropdown-menu {
+                background-color: #84a386;
+                position: static;
+                display: none;
+                box-shadow: none;
+                padding-left: 1rem;
+            }
+
+            .dropdown.active .dropdown-menu {
+                display: block;
+            }
+
+            .nav-item {
+                width: 100%;
+            }
+        }
+
+        /* Estilos específicos para a página de Projetos */
+        .project-logos {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            padding-top: 3rem;
+            padding-left: 3rem;
+            padding-right: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .project-logos img {
+            height: 120px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .project-logos img:hover {
+            transform: scale(1.1);
+        }
+
+        .project-section {
+            margin: rem 0;
+            padding-top: 50px; /* Ajuste conforme a altura do seu menu */
+            scroll-margin-top: 50px; /* Garante que o scroll pare no lugar certo */
+        }
+
+        .project-section h2 {
+            color: var(--dark-blue);
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+            text-align: center;
+        }
+
+        .project-content {
+            display: flex;
+            gap: 2rem;
+            align-items: flex-start;
+            margin: 1rem
+        }
+
+        .project-carousel {
+            flex: 1;
+            max-width: 50%;
+        }
+
+        .project-details {
+            flex: 1;
+            max-width: 50%;
+        }
+
+        .project-images {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+
+        .project-images img {
+            width: 100%;
+            height: 191px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        .project-social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .project-social-links a {
+            color: var(--dark-blue);
+            font-size: 1.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .project-social-links a:hover {
+            color: var(--accent-orange);
+        }
+
+        /* Estilo do modal */
+        .modal {
+            display: none; /* Escondido por padrão */
+            position: fixed;
+            z-index: 1000;
+            padding-top: 60px;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.9); /* Fundo escuro semi-transparente */
+        }
+
+        /* Conteúdo do modal (imagem) */
+        .modal-content {
+            margin: auto;
+            display: block;
+            max-width: 80%;
+            max-height: 80%;
+        }
+
+        /* Botão para fechar o modal */
+        .close {
+            position: absolute;
+            top: 20px;
+            right: 35px;
+            color: #fff;
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: #bbb;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        /* Novo estilo para o fundo branco do texto das equipes */
+        .team-text {
+            background-color: var(--white);
+            padding: 2rem;
+            border-radius: 10px;
+            margin: 2rem 0;
+            margin-left: 4rem;
+            margin-right: 4rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Ajuste de responsividade para as imagens */
+        @media (max-width: 768px) {
+            .project-logos {
+                gap: 2rem;
+                padding-top: 2rem;
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+            .project-section{
+                padding-top: 25px;
+            }
+            .project-section h2{
+                font-size: 1.2rem;
+                margin: 1rem;
+                padding-top: 0px;
+            }
+            .team-text {
+                padding: 1rem;
+                border-radius: 10px;
+                margin: 1rem 0;
+                margin-left: 1rem;
+                margin-right: 1rem;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            }
+            .team-text p {
+                font-size: 0.9rem;
+            }   
+            .social-links a {
+                font-size: 2rem;
+            }
+            .project-content {
+                flex-direction: column;
+            }
+
+            .project-carousel, .project-details {
+                max-width: 100%;
+            }
+
+           .project-images img {
+            width: 100%;
+            height: 350px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="logo-section">
+                <a href="index.html"><img src="imagens/damec-cp.png" alt="Mechanical Engineering Logo" class="logo-img"></a>
+                <span class="logo-text">DEPARTAMENTO DE ENGENHARIA MECÂNICA</span>
+            </div>
+            <img src="imagens/utfpr.png" alt="Mechanical Engineering Logo" class="logo-img1">
+            <i class="fas fa-bars menu-icon" id="menu-icon"></i>
+        </header>
+
+        <nav class="nav-menu">
+            <ul class="nav-list" id="nav-list">
+                <li class="nav-item"><a href="departamento.html">DAMEC-CP</a></li>
+                <li class="nav-item dropdown">
+                    <a href="#">Graduação</a>
+                    <ul class="dropdown-menu">
+                        <li class="nav-item"><a href="#">Professores</a></li>
+                        <li class="nav-item"><a href="#">Estágio</a></li>
+                        <li class="nav-item"><a href="#">Trabalho de conclusão de curso</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item"><a href="#">Pós Graduação</a></li>
+                <li class="nav-item"><a href="laboratorio.html">Laboratórios</a></li>
+                <li class="nav-item"><a href="projetos.html">Projetos</a></li>
+                <li class="nav-item"><a href="sipem.html">Simpósio</a></li>
+                <li class="nav-item"><a href="duvidas.html">Dúvidas Frequentes</a></li> 
+            </ul>
+        </nav>
+
+        <section class="project-logos">
+            <img src="img-projetos/baja.jpg" alt="Baja" onclick="scrollToSection('baja')">
+            <img src="img-projetos/formula.jpg" alt="Formula" onclick="scrollToSection('formula')">
+            <img src="img-projetos/formula.jpg" alt="Aerodesigner" onclick="scrollToSection('aerodesigner')">
+            <img src="img-projetos/Ecodelta.png" alt="Ecodelta" onclick="scrollToSection('ecodelta')">
+            <img src="img-projetos/abutres.jpg" alt="Rocket" onclick="scrollToSection('rocket')">
+            <img src="img-projetos/baja.jpg" alt="SmartMec" onclick="scrollToSection('smartmec')">
+        </section>
+
+        <section id="baja" class="project-section">
+            <h2>EQUIPE PROCOBAJA</h2>
+            <div class="team-text">
+                <p>O projeto Baja é uma competição que desafia os estudantes a projetarem, construírem e testarem um veículo off-road...O projeto Baja é uma competição que desafia os estudantes a projetarem, construírem e testarem um veículo off-road...O projeto Baja é uma competição que desafia os estudantes a projetarem, construírem e testarem um veículo off-road</p>
+                <div class="social-links">
+                    <a href="https://instagram.com/baja" target="_blank" class="fab fa-instagram"></a>
+                    <a href="https://facebook.com/baja" target="_blank" class="fab fa-facebook"></a>
+                </div>
+            </div>
+            <div class="project-content">
+                <!-- Texto e 4 imagens na parte superior -->
+                <div class="project-details">
+                    <div class="project-images">
+                        <img src="img-projetos/dragon_1.jpg" alt="Equipe Baja 1" onclick="openModal('img-projetos/dragon_1.jpg')">
+                        <img src="img-projetos/dragon_1.jpg" alt="Equipe Baja 2" onclick="openModal('img-projetos/dragon_1.jpg')">
+                        <img src="img-projetos/dragon_1.jpg" alt="Equipe Baja 3" onclick="openModal('img-projetos/dragon_1.jpg')">
+                        <img src="img-projetos/dragon_1.jpg" alt="Equipe Baja 4" onclick="openModal('img-projetos/dragon_1.jpg')">
+                    </div>
+                    <div id="imageModal" class="modal">
+                        <span class="close" onclick="closeModal()">&times;</span>
+                        <img class="modal-content" id="modalImage">
+                    </div>
+                </div>
+                <!-- Carrossel na parte inferior -->
+                <div class="project-carousel">
+                    <div class="carousel" data-carousel-id="baja-carousel">
+                        <div class="carousel-images">
+                            <img src="img-projetos/dragon_1.jpg" alt="Baja 1" class="carousel-image">
+                            <img src="img-projetos/dragon_1.jpg" alt="Baja 2" class="carousel-image">
+                            <img src="img-projetos/dragon_1.jpg" alt="Baja 3" class="carousel-image">
+                        </div>
+                        <div class="carousel-indicators">
+                            <span class="indicator active" onclick="currentSlide('baja-carousel', 0)"></span>
+                            <span class="indicator" onclick="currentSlide('baja-carousel', 1)"></span>
+                            <span class="indicator" onclick="currentSlide('baja-carousel', 2)"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="formula" class="project-section">
+            <h2>EQUIPE FORMULA</h2>
+            <div class="team-text">
+                <p>O projeto Formula SAE é uma competição internacional onde estudantes projetam, constroem e competem com um carro de corrida estilo fórmula...O projeto Formula SAE é uma competição internacional onde estudantes projetam, constroem e competem com um carro de corrida estilo fórmula...O projeto Formula SAE é uma competição internacional onde estudantes projetam, constroem e competem com um carro de corrida estilo fórmula</p>
+                <div class="social-links">
+                    <a href="https://instagram.com/baja" target="_blank" class="fab fa-instagram"></a>
+                    <a href="https://facebook.com/baja" target="_blank" class="fab fa-facebook"></a>
+                </div>
+            </div>
+            <div class="project-content">
+                <div class="project-carousel">
+                    <div class="carousel" data-carousel-id="formula-carousel">
+                        <div class="carousel-images">
+                            <img src="img-projetos/dragon_2.jpg" alt="Formula 1" class="carousel-image">
+                            <img src="img-projetos/dragon_2.jpg" alt="Formula 2" class="carousel-image">
+                            <img src="img-projetos/dragon_2.jpg" alt="Formula 3" class="carousel-image">
+                        </div>
+                        <div class="carousel-indicators">
+                            <span class="indicator active" onclick="currentSlide('formula-carousel', 0)"></span>
+                            <span class="indicator" onclick="currentSlide('formula-carousel', 1)"></span>
+                            <span class="indicator" onclick="currentSlide('formula-carousel', 2)"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-details">
+                    <div class="project-images">
+                        <img src="img-projetos/dragon_2.jpg" alt="Equipe Formula 1" onclick="openModal('img-projetos/dragon_1.jpg')">
+                        <img src="img-projetos/dragon_2.jpg" alt="Equipe Formula 2" onclick="openModal('img-projetos/dragon_1.jpg')">
+                        <img src="img-projetos/dragon_2.jpg" alt="Equipe Formula 3" onclick="openModal('img-projetos/dragon_1.jpg')">
+                        <img src="img-projetos/dragon_2.jpg" alt="Equipe Formula " onclick="openModal('img-projetos/dragon_1.jpg')">
+                    </div>
+                    <div id="imageModal" class="modal">
+                        <span class="close" onclick="closeModal()">&times;</span>
+                        <img class="modal-content" id="modalImage">
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        const menuIcon = document.getElementById('menu-icon');
+        const navList = document.getElementById('nav-list');
+        const navItems = document.querySelectorAll('.nav-item a');
+
+        // Abre/fecha o menu ao clicar no ícone do menu
+        menuIcon.addEventListener('click', () => {
+            // Rola a página para o topo
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth' // Adiciona um efeito suave de rolagem
+            });
+
+            // Abre o menu
+            navList.classList.toggle('active');
+        });
+
+        // Fecha o menu ao clicar em um item do menu
+        navItems.forEach(item => {
+            item.addEventListener('click', () => {
+                navList.classList.remove('active');
+            });
+        });
+
+        // Fecha o menu ao clicar fora dele
+        document.addEventListener('click', (event) => {
+            if (!event.target.closest('.nav-menu') && !event.target.closest('.menu-icon')) {
+                navList.classList.remove('active');
+            }
+        });
+        
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const carousels = document.querySelectorAll('.carousel');
+
+            carousels.forEach(carousel => {
+                const carouselId = carousel.getAttribute('data-carousel-id');
+                const images = carousel.querySelectorAll('.carousel-image');
+                const indicators = carousel.querySelectorAll('.indicator');
+                let currentIndex = 0;
+                let autoSlideInterval;
+
+                function showSlide(index) {
+                    const totalSlides = images.length;
+                    currentIndex = (index + totalSlides) % totalSlides;
+                    const offset = -currentIndex * 100;
+                    carousel.querySelector('.carousel-images').style.transform = `translateX(${offset}%)`;
+                    updateIndicators();
+                }
+
+                function updateIndicators() {
+                    indicators.forEach((indicator, index) => {
+                        indicator.classList.toggle('active', index === currentIndex);
+                    });
+                }
+
+                function startAutoSlide() {
+                    autoSlideInterval = setInterval(() => {
+                        showSlide(currentIndex + 1);
+                    }, 5000);
+                }
+
+                function stopAutoSlide() {
+                    clearInterval(autoSlideInterval);
+                }
+
+                indicators.forEach((indicator, index) => {
+                    indicator.addEventListener('click', () => {
+                        showSlide(index);
+                    });
+                });
+
+                carousel.addEventListener('touchstart', (e) => {
+                    touchStartX = e.touches[0].clientX;
+                });
+
+                carousel.addEventListener('touchend', (e) => {
+                    touchEndX = e.changedTouches[0].clientX;
+                    handleSwipe();
+                });
+
+                function handleSwipe() {
+                    const swipeThreshold = 50;
+                    const diff = touchStartX - touchEndX;
+
+                    if (Math.abs(diff) > swipeThreshold) {
+                        if (diff > 0) {
+                            showSlide(currentIndex + 1);
+                        } else {
+                            showSlide(currentIndex - 1);
+                        }
+                    }
+                }
+
+                carousel.addEventListener('mouseenter', () => {
+                    stopAutoSlide();
+                });
+
+                carousel.addEventListener('mouseleave', () => {
+                    startAutoSlide();
+                });
+
+                startAutoSlide();
+            });
+        });
+
+        // Função para abrir o modal e exibir a imagem clicada
+        function openModal(imageSrc) {
+            const modal = document.getElementById('imageModal');
+            const modalImg = document.getElementById('modalImage');
+            modal.style.display = 'block';
+            modalImg.src = imageSrc;
+        }
+
+        // Função para fechar o modal
+        function closeModal() {
+            const modal = document.getElementById('imageModal');
+            modal.style.display = 'none';
+        }
+
+        // Fechar o modal ao clicar fora da imagem
+        window.onclick = function(event) {
+            const modal = document.getElementById('imageModal');
+            if (event.target === modal) {
+                modal.style.display = 'none';
+            }
+        };
+
+        let currentIndex = 0;
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        function showSlide(index) {
+            const slides = document.querySelectorAll('.carousel-image');
+            const totalSlides = slides.length;
+            currentIndex = (index + totalSlides) % totalSlides;
+            const offset = -currentIndex * 100;
+            document.querySelector('.carousel-images').style.transform = `translateX(${offset}%)`;
+            updateIndicators();
+        }
+
+        function currentSlide(index) {
+            showSlide(index);
+        }
+
+        function updateIndicators() {
+            const indicators = document.querySelectorAll('.indicator');
+            indicators.forEach((indicator, index) => {
+                indicator.classList.toggle('active', index === currentIndex);
+            });
+        }
+
+        document.querySelector('.carousel').addEventListener('touchstart', (e) => {
+            touchStartX = e.touches[0].clientX;
+        });
+
+        document.querySelector('.carousel').addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].clientX;
+            handleSwipe();
+        });
+
+        function handleSwipe() {
+            const swipeThreshold = 50;
+            const diff = touchStartX - touchEndX;
+
+            if (Math.abs(diff) > swipeThreshold) {
+                if (diff > 0) {
+                    showSlide(currentIndex + 1);
+                } else {
+                    showSlide(currentIndex - 1);
+                }
+            }
+        }
+
+        let autoSlideInterval = setInterval(() => {
+            showSlide(currentIndex + 1);
+        }, 5000);
+
+        document.querySelector('.carousel').addEventListener('mouseenter', () => {
+            clearInterval(autoSlideInterval);
+        });
+
+        document.querySelector('.carousel').addEventListener('mouseleave', () => {
+            autoSlideInterval = setInterval(() => {
+                showSlide(currentIndex + 1);
+            }, 5000);
+        });
+
+        function scrollToSection(sectionId) {
+            document.getElementById(sectionId).scrollIntoView({ behavior: 'smooth' });
+        }
+        
+        
+        // Função para abrir o modal e exibir a imagem clicada
+        function openModal(imageSrc) {
+            const modal = document.getElementById('imageModal');
+            const modalImg = document.getElementById('modalImage');
+            modal.style.display = 'block'; // Exibe o modal
+            modalImg.src = imageSrc; // Define a imagem no modal
+        }
+
+        // Função para fechar o modal
+        function closeModal() {
+            const modal = document.getElementById('imageModal');
+            modal.style.display = 'none'; // Esconde o modal
+        }
+
+        // Fechar o modal ao clicar fora da imagem
+        window.onclick = function(event) {
+            const modal = document.getElementById('imageModal');
+            if (event.target === modal) {
+                modal.style.display = 'none';
+            }
+        };
+                
+    </script>
+</body>
+</html>

@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simpósio - SIPEM</title>
+    <title>Laboratórios - DAMEC-CP</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
+        /* Estilos globais (copiados da página principal) */
         :root {
             --primary-color: #718d73;
             --secondary-color: #5f705f;
@@ -158,110 +159,92 @@
             transform-origin: left;
         }
 
-        .simpósio-section {
+        .nav-list.active {
+            display: flex;
+            flex-direction: column;
+            position: absolute;
+            top: 80px;
+            left: 0;
+            width: 100%;
+            background-color: var(--white);
+            z-index: 1000;
+            padding: 1rem 0;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Estilos específicos para a página de Laboratórios */
+        .laboratory-section {
             padding: 2rem;
+            margin: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .laboratory-section h2 {
+            color: var(--dark-blue);
+            margin-bottom: 1.5rem;
+            font-size: 1.75rem;
             text-align: center;
         }
 
-        .simpósio-logo {
-            max-width: 300px;
-            margin-bottom: 2rem;
+        .laboratory-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
         }
 
-        .certificate-icon {
-            font-size: 5rem;
-            color: var(--accent-orange);
-            margin-bottom: 1rem;
+        .laboratory-card {
+            background: var(--white);
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s ease;
-            cursor: pointer;
-        }
-
-        .certificate-icon:hover {
-            transform: scale(1.1);
-        }
-
-        .certificate-link {
-            text-decoration: none;
-            color: var(--dark-blue);
-            font-weight: bold;
-            font-size: 1.2rem;
-        }
-
-        .mosaic {
             display: flex;
             flex-direction: column;
-            gap: 2rem;
-            margin-top: 3rem;
+            align-items: center;
+            text-align: center;
         }
 
-        .mosaic-item {
-            background-color: var(--white);
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            padding: 1rem;
+        .laboratory-card:hover {
+            transform: translateY(-5px);
         }
 
-        .mosaic-item h3 {
+        .laboratory-card h3 {
             color: var(--dark-blue);
             margin-bottom: 1rem;
+            font-size: 1.5rem;
         }
 
-        .image-grid {
+        .laboratory-card p {
+            color: var(--dark-blue);
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+
+        .laboratory-images {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 0.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            width: 100%;
         }
 
-        .image-grid img {
+        .laboratory-images img {
             width: 100%;
-            height: 100px;
+            height: 150px;
             object-fit: cover;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: transform 0.3s ease;
+            border-radius: 10px;
         }
 
-        .image-grid img:hover {
-            transform: scale(1.05);
+        .laboratory-grid {
+            grid-template-columns: 1fr;
         }
 
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgba(0,0,0,0.9);
+        .laboratory-images {
+            grid-template-columns: repeat(2, 1fr);
         }
-
-        .modal-content {
-            margin: auto;
-            display: block;
-            width: 80%;
-            max-width: 700px;
-        }
-
-        .close {
-            position: absolute;
-            top: 15px;
-            right: 35px;
-            color: #f1f1f1;
-            font-size: 40px;
-            font-weight: bold;
-            transition: 0.3s;
-        }
-
-        .close:hover,
-        .close:focus {
-            color: #bbb;
-            text-decoration: none;
-            cursor: pointer;
-        }
-
+        
+        /* Estilos para os ícones laterais */
         .side-nav {
             position: fixed;
             top: 50%;
@@ -290,6 +273,15 @@
 
         .side-nav a:hover {
             background-color: var(--secondary-color);
+        }
+
+        .side-nav a i {
+            font-size: 1.2rem;
+        }
+
+        /* Ajuste para a rolagem suave */
+        .laboratory-card {
+            scroll-margin-top: 100px; /* Ajuste conforme a altura do cabeçalho */
         }
 
         @media (max-width: 768px) {
@@ -341,11 +333,16 @@
                 z-index: 1000;
                 max-height: calc(100vh - 80px);
                 overflow-y: auto;
-                list-style-type: none;
+                list-style-type: none; /* Remove os pontos da lista */
             }
 
             .nav-list.active {
                 display: flex;
+            }
+
+            .nav-item a {
+                text-align: ;
+                width: 100%;
             }
 
             .dropdown-menu {
@@ -363,19 +360,15 @@
             .nav-item {
                 width: 100%;
             }
-
-            .image-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .image-grid img {
-                height: 80px;
-            }
-
             .side-nav {
                 right: 5px;
             }
+            .laboratory-section {
+                padding: 0rem;
+                margin: 1rem;
+            }
         }
+
     </style>
 </head>
 <body>
@@ -408,62 +401,105 @@
             </ul>
         </nav>
 
-        <section class="simpósio-section">
-            <img src="imagens/sipem-logo.png" alt="Logo SIPEM" class="simpósio-logo">
-            
-            <div class="certificate-icon" onclick="window.location.href='#';">
-                <i class="fas fa-award"></i>
-            </div>
-            <p class="certificate-link">Gerar Certificado</p>
+        <!-- Navegação lateral com ícones -->
+        <div class="side-nav">
+            <a href="#metalografia" title="Metalografia e Ensaios"><i class="fas fa-microscope"></i></a>
+            <a href="#oficina-mecanica" title="Oficina Mecânica"><i class="fas fa-tools"></i></a>
+            <a href="#soldagem" title="Oficina de Soldagem"><i class="fas fa-wrench"></i></a>
+            <a href="#cnc" title="Usinagem CNC"><i class="fas fa-cogs"></i></a>
+            <a href="#dinamica" title="Dinâmica"><i class="fas fa-wave-square"></i></a>
+            <a href="#refrigeracao" title="Refrigeração"><i class="fas fa-snowflake"></i></a>
+            <a href="#fluido-energia" title="Fluido e Energia"><i class="fas fa-tint"></i></a>
+        </div>
 
-            <div class="mosaic">
-                <div class="mosaic-item" id="trabalhos">
-                    <h3>Trabalhos Acadêmicos</h3>
-                    <div class="image-grid">
-                        <img src="imagens/trabalho1.jpg" alt="Trabalho 1" onclick="openModal(this.src)">
-                        <img src="imagens/trabalho2.jpg" alt="Trabalho 2" onclick="openModal(this.src)">
-                        <img src="imagens/trabalho3.jpg" alt="Trabalho 3" onclick="openModal(this.src)">
-                        <img src="imagens/trabalho4.jpg" alt="Trabalho 4" onclick="openModal(this.src)">
-                        <img src="imagens/trabalho5.jpg" alt="Trabalho 5" onclick="openModal(this.src)">
-                        <img src="imagens/trabalho6.jpg" alt="Trabalho 6" onclick="openModal(this.src)">
+        <section class="laboratory-section">
+            <h2>Laboratórios</h2>
+            <div class="laboratory-grid">
+                <!-- Laboratório de Metalografia e Ensaios -->
+                <div id="metalografia" class="laboratory-card">
+                    <h3>Laboratório de Metalografia e Ensaios</h3>
+                    <p>Equipado com microscópios ópticos e equipamentos de análise de materiais, este laboratório permite a realização de ensaios mecânicos e metalográficos.</p>
+                    <div class="laboratory-images">
+                        <img src="imagens/metalografia1.jpg" alt="Metalografia 1">
+                        <img src="imagens/metalografia2.jpg" alt="Metalografia 2">
+                        <img src="imagens/metalografia3.jpg" alt="Metalografia 3">
+                        <img src="imagens/metalografia4.jpg" alt="Metalografia 4">
                     </div>
                 </div>
-                <div class="mosaic-item" id="palestras">
-                    <h3>Palestras</h3>
-                    <div class="image-grid">
-                        <img src="imagens/palestra1.jpg" alt="Palestra 1" onclick="openModal(this.src)">
-                        <img src="imagens/palestra2.jpg" alt="Palestra 2" onclick="openModal(this.src)">
-                        <img src="imagens/palestra3.jpg" alt="Palestra 3" onclick="openModal(this.src)">
-                        <img src="imagens/palestra4.jpg" alt="Palestra 4" onclick="openModal(this.src)">
-                        <img src="imagens/palestra5.jpg" alt="Palestra 5" onclick="openModal(this.src)">
-                        <img src="imagens/palestra6.jpg" alt="Palestra 6" onclick="openModal(this.src)">
+
+                <!-- Oficina Mecânica -->
+                <div id="oficina-mecanica" class="laboratory-card">
+                    <h3>Oficina Mecânica</h3>
+                    <p>Espaço dedicado à fabricação e montagem de peças mecânicas, com tornos, fresadoras e ferramentas de precisão.</p>
+                    <div class="laboratory-images">
+                        <img src="imagens/oficina1.jpg" alt="Oficina 1">
+                        <img src="imagens/oficina2.jpg" alt="Oficina 2">
+                        <img src="imagens/oficina3.jpg" alt="Oficina 3">
+                        <img src="imagens/oficina4.jpg" alt="Oficina 4">
                     </div>
                 </div>
-                <div class="mosaic-item" id="minicursos">
-                    <h3>Minicursos</h3>
-                    <div class="image-grid">
-                        <img src="imagens/minicurso1.jpg" alt="Minicurso 1" onclick="openModal(this.src)">
-                        <img src="imagens/minicurso2.jpg" alt="Minicurso 2" onclick="openModal(this.src)">
-                        <img src="imagens/minicurso3.jpg" alt="Minicurso 3" onclick="openModal(this.src)">
-                        <img src="imagens/minicurso4.jpg" alt="Minicurso 4" onclick="openModal(this.src)">
-                        <img src="imagens/minicurso5.jpg" alt="Minicurso 5" onclick="openModal(this.src)">
-                        <img src="imagens/minicurso6.jpg" alt="Minicurso 6" onclick="openModal(this.src)">
+
+                <!-- Oficina de Soldagem -->
+                <div id="soldagem" class="laboratory-card">
+                    <h3>Oficina de Soldagem</h3>
+                    <p>Equipada com máquinas de solda TIG, MIG e eletrodo revestido, este laboratório permite a prática de diferentes técnicas de soldagem.</p>
+                    <div class="laboratory-images">
+                        <img src="imagens/soldagem1.jpg" alt="Soldagem 1">
+                        <img src="imagens/soldagem2.jpg" alt="Soldagem 2">
+                        <img src="imagens/soldagem3.jpg" alt="Soldagem 3">
+                        <img src="imagens/soldagem4.jpg" alt="Soldagem 4">
+                    </div>
+                </div>
+
+                <!-- Laboratório de Usinagem CNC -->
+                <div id="cnc" class="laboratory-card">
+                    <h3>Laboratório de Usinagem CNC</h3>
+                    <p>Com máquinas CNC de última geração, este laboratório permite a fabricação de peças complexas com alta precisão.</p>
+                    <div class="laboratory-images">
+                        <img src="imagens/cnc1.jpg" alt="CNC 1">
+                        <img src="imagens/cnc2.jpg" alt="CNC 2">
+                        <img src="imagens/cnc3.jpg" alt="CNC 3">
+                        <img src="imagens/cnc4.jpg" alt="CNC 4">
+                    </div>
+                </div>
+
+                <!-- Laboratório de Dinâmica -->
+                <div id="dinamica" class="laboratory-card">
+                    <h3>Laboratório de Dinâmica</h3>
+                    <p>Focado no estudo de vibrações e movimentos, este laboratório possui equipamentos para análise dinâmica de sistemas mecânicos.</p>
+                    <div class="laboratory-images">
+                        <img src="imagens/dinamica1.jpg" alt="Dinâmica 1">
+                        <img src="imagens/dinamica2.jpg" alt="Dinâmica 2">
+                        <img src="imagens/dinamica3.jpg" alt="Dinâmica 3">
+                        <img src="imagens/dinamica4.jpg" alt="Dinâmica 4">
+                    </div>
+                </div>
+
+                <!-- Laboratório de Refrigeração -->
+                <div id="refrigeracao" class="laboratory-card">
+                    <h3>Laboratório de Refrigeração</h3>
+                    <p>Equipado com sistemas de refrigeração e climatização, este laboratório permite o estudo de ciclos termodinâmicos e eficiência energética.</p>
+                    <div class="laboratory-images">
+                        <img src="imagens/refrigeracao1.jpg" alt="Refrigeração 1">
+                        <img src="imagens/refrigeracao2.jpg" alt="Refrigeração 2">
+                        <img src="imagens/refrigeracao3.jpg" alt="Refrigeração 3">
+                        <img src="imagens/refrigeracao4.jpg" alt="Refrigeração 4">
+                    </div>
+                </div>
+
+                <!-- Laboratório de Fluido e Energia -->
+                <div id="fluido-energia" class="laboratory-card">
+                    <h3>Laboratório de Fluido e Energia</h3>
+                    <p>Dedicado ao estudo de fluidos e sistemas de energia, este laboratório possui bancadas de testes para turbinas, bombas e sistemas hidráulicos.</p>
+                    <div class="laboratory-images">
+                        <img src="imagens/fluido1.jpg" alt="Fluido 1">
+                        <img src="imagens/fluido2.jpg" alt="Fluido 2">
+                        <img src="imagens/fluido3.jpg" alt="Fluido 3">
+                        <img src="imagens/fluido4.jpg" alt="Fluido 4">
                     </div>
                 </div>
             </div>
         </section>
-
-        <!-- Navegação lateral com ícones -->
-        <div class="side-nav">
-            <a href="#trabalhos" title="Trabalhos Acadêmicos"><i class="fas fa-book"></i></a>
-            <a href="#palestras" title="Palestras"><i class="fas fa-chalkboard-teacher"></i></a>
-            <a href="#minicursos" title="Minicursos"><i class="fas fa-graduation-cap"></i></a>
-        </div>
-    </div>
-
-    <div id="imageModal" class="modal">
-        <span class="close" onclick="closeModal()">&times;</span>
-        <img class="modal-content" id="modalImage">
     </div>
 
     <script>
@@ -471,44 +507,31 @@
         const navList = document.getElementById('nav-list');
         const navItems = document.querySelectorAll('.nav-item a');
 
+        // Abre/fecha o menu ao clicar no ícone do menu
         menuIcon.addEventListener('click', () => {
+            // Rola a página para o topo
             window.scrollTo({
                 top: 0,
-                behavior: 'smooth'
+                behavior: 'smooth' // Adiciona um efeito suave de rolagem
             });
+
+            // Abre o menu
             navList.classList.toggle('active');
         });
 
+        // Fecha o menu ao clicar em um item do menu
         navItems.forEach(item => {
             item.addEventListener('click', () => {
                 navList.classList.remove('active');
             });
         });
 
+        // Fecha o menu ao clicar fora dele
         document.addEventListener('click', (event) => {
             if (!event.target.closest('.nav-menu') && !event.target.closest('.menu-icon')) {
                 navList.classList.remove('active');
             }
         });
-
-        function openModal(imageSrc) {
-            var modal = document.getElementById("imageModal");
-            var modalImg = document.getElementById("modalImage");
-            modal.style.display = "block";
-            modalImg.src = imageSrc;
-        }
-
-        function closeModal() {
-            var modal = document.getElementById("imageModal");
-            modal.style.display = "none";
-        }
-
-        window.onclick = function(event) {
-            var modal = document.getElementById("imageModal");
-            if (event.target == modal) {
-                modal.style.display = "none";
-            }
-        }
     </script>
 </body>
 </html>

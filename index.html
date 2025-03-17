@@ -6,7 +6,7 @@
     <title>Mechanical Engineering</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-:root {
+        :root {
             --primary-color: #718d73;
             --secondary-color: #5f705f;
             --dark-blue: #1B2838;
@@ -66,6 +66,7 @@
             color: var(--dark-blue);
             font-weight: bold;
             font-size: 1.5rem;
+            text-align: center;
         }
 
         .menu-icon {
@@ -391,10 +392,11 @@
 
             .logo-text {
                 font-size: 0;
+                text-align: center;
             }
 
             .logo-text::after {
-                content: "DAMEC-CP";
+                content: "";
                 font-size: 1.2rem;
                 font-weight: bold;
                 color: var(--dark-blue);
@@ -552,8 +554,8 @@
                     </ul>
                 </li>
                 <li class="nav-item"><a href="#">Pós Graduação</a></li>
-                <li class="nav-item"><a href="#">Laboratórios</a></li>
-                <li class="nav-item"><a href="#">Projetos</a></li>
+                <li class="nav-item"><a href="laboratorio.html">Laboratórios</a></li>
+                <li class="nav-item"><a href="projetos.html">Projetos</a></li>
                 <li class="nav-item"><a href="sipem.html">Simpósio</a></li>
                 <li class="nav-item"><a href="duvidas.html">Dúvidas Frequentes</a></li> 
             </ul>
@@ -652,14 +654,21 @@
             <div id="map"></div>
         </section>
     </div>
-
+    <script src="caroucel.js"></script>
     <script>
-        const menuIcon = document.getElementById('menu-icon');
+               const menuIcon = document.getElementById('menu-icon');
         const navList = document.getElementById('nav-list');
         const navItems = document.querySelectorAll('.nav-item a');
 
         // Abre/fecha o menu ao clicar no ícone do menu
         menuIcon.addEventListener('click', () => {
+            // Rola a página para o topo
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth' // Adiciona um efeito suave de rolagem
+            });
+
+            // Abre o menu
             navList.classList.toggle('active');
         });
 
@@ -675,67 +684,6 @@
             if (!event.target.closest('.nav-menu') && !event.target.closest('.menu-icon')) {
                 navList.classList.remove('active');
             }
-        });
-
-
-        let currentIndex = 0;
-        let touchStartX = 0;
-        let touchEndX = 0;
-
-        function showSlide(index) {
-            const slides = document.querySelectorAll('.carousel-image');
-            const totalSlides = slides.length;
-            currentIndex = (index + totalSlides) % totalSlides;
-            const offset = -currentIndex * 100;
-            document.querySelector('.carousel-images').style.transform = `translateX(${offset}%)`;
-            updateIndicators();
-        }
-
-        function currentSlide(index) {
-            showSlide(index);
-        }
-
-        function updateIndicators() {
-            const indicators = document.querySelectorAll('.indicator');
-            indicators.forEach((indicator, index) => {
-                indicator.classList.toggle('active', index === currentIndex);
-            });
-        }
-
-        document.querySelector('.carousel').addEventListener('touchstart', (e) => {
-            touchStartX = e.touches[0].clientX;
-        });
-
-        document.querySelector('.carousel').addEventListener('touchend', (e) => {
-            touchEndX = e.changedTouches[0].clientX;
-            handleSwipe();
-        });
-
-        function handleSwipe() {
-            const swipeThreshold = 50;
-            const diff = touchStartX - touchEndX;
-
-            if (Math.abs(diff) > swipeThreshold) {
-                if (diff > 0) {
-                    showSlide(currentIndex + 1);
-                } else {
-                    showSlide(currentIndex - 1);
-                }
-            }
-        }
-
-        let autoSlideInterval = setInterval(() => {
-            showSlide(currentIndex + 1);
-        }, 5000);
-
-        document.querySelector('.carousel').addEventListener('mouseenter', () => {
-            clearInterval(autoSlideInterval);
-        });
-
-        document.querySelector('.carousel').addEventListener('mouseleave', () => {
-            autoSlideInterval = setInterval(() => {
-                showSlide(currentIndex + 1);
-            }, 5000);
         });
 
         function initMap() {
